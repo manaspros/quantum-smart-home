@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# Quantum-Secured IoT-Based Smart Home System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern single-page application (SPA) for managing and monitoring a quantum-secured smart home system. This application provides a secure interface for viewing smart home events with Auth0 authentication integration.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Secure Authentication**: Implemented using Auth0 for robust user authentication
+- **Protected Dashboard**: Accessible only to authenticated users
+- **Event Log Display**: View smart home events in a clear, organized table format
+- **Quantum Security**: Built with consideration for quantum-secure encryption methods
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Node.js (v14.0.0 or later)
+- npm or yarn
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+1. Clone this repository
+2. Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+3. Configure Auth0:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   - Sign up for an Auth0 account at https://auth0.com if you don't have one
+   - Create a new Auth0 application (Single Page Web Application)
+   - Update the Auth0 configuration in `src/auth/auth-config.ts` with your credentials:
+     ```typescript
+     export const authConfig = {
+       domain: "YOUR_AUTH0_DOMAIN",
+       clientId: "YOUR_AUTH0_CLIENT_ID",
+       redirectUri: window.location.origin,
+       audience: "https://quantum-smart-home-api",
+       scope: "openid profile email read:events",
+     };
+     ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Start the development server:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm start
+```
 
-### `npm run eject`
+5. Open your browser to `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Connecting to a Backend
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To connect this application to a real backend API:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Create an API server to handle event data
+2. Update the fetch logic in `Dashboard.tsx` to make real API calls instead of using mock data
+3. Ensure your API is protected with Auth0 and accepts the Bearer token
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Technologies Used
 
-## Learn More
+- React.js
+- TypeScript
+- Auth0 Authentication
+- Material UI
+- React Router
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT
